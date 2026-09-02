@@ -1,0 +1,7 @@
+CoolProp
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+pysr
