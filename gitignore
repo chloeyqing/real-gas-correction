@@ -1,7 +1,0 @@
-__pycache__/
-.ipynb_checkpoints/
-*.pyc
-
-# Generated datasets and serialized models are reproducible outputs.
-data/processed/
-results/models/
