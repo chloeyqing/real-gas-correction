@@ -17,10 +17,7 @@ $$
 The final pressure prediction is:
 
 $$
-\hat{p}
-=
-\rho R T
-\left(1+\widehat{\Delta Z}\right)
+\hat{p} = \rho R T \left(1+\widehat{\Delta Z}\right)
 $$
 
 ## Project Overview
