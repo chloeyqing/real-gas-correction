@@ -1,0 +1,4 @@
+regime,equation_index,equation
+near_ideal,7,0.7075689/(-T_r/rho_r + rho_r/(T_r - (0.6079937 + 1.2324635/rho_r)))
+attraction_dominated,16,rho_r*(-T_r + rho_r*(-0.60809004) + 2.3568213)/(-T_r + (T_r**2*rho_r**2 - T_r*T_r**2)*0.13378955) - 0.0013054596
+excluded_volume_dominated,7,0.3010038*rho_r*(rho_r - 1*(-0.0014043123))*(1.5343235*T_r + rho_r - 3.7023797)
