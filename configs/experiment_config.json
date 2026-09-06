@@ -1,0 +1,33 @@
+{
+  "project": "Physics-Aware Symbolic Correction of the Ideal-Gas Law for CO2",
+  "fluid": "CO2",
+  "reference_source": "CoolProp",
+  "reference_fluid_string": "CO2",
+  "coolprop_version": "8.0.0",
+  "R_J_per_mol_K": 8.31446261815324,
+  "critical_temperature_K": 304.1282000029807,
+  "critical_molar_density_mol_per_m3": 10624.905587175583,
+  "epsilon_abs_delta_Z": 0.03,
+  "natural_grid": {
+    "temperature_min_K": 310.0,
+    "temperature_max_K": 500.0,
+    "temperature_points": 50,
+    "molar_density_min_mol_per_m3": 100.0,
+    "molar_density_max_mol_per_m3": 20000.0,
+    "molar_density_points": 100,
+    "density_spacing": "geometric"
+  },
+  "high_density_grid": {
+    "temperature_min_K": 360.0,
+    "temperature_max_K": 500.0,
+    "temperature_points": 80,
+    "molar_density_min_mol_per_m3": 12000.0,
+    "molar_density_max_mol_per_m3": 20000.0,
+    "molar_density_points": 80,
+    "density_spacing": "linear",
+    "interpretation": "held-out high-density distribution shift, not extrapolation"
+  },
+  "split_unit": "complete temperature isotherm",
+  "failed_natural_points": 0,
+  "failed_high_density_points": 0
+}
