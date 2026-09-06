@@ -4,6 +4,7 @@ message: "If you use this work, please cite it as follows."
 type: software
 authors:
   - family-names: Lee
-    given-names: Chloe
+    given-names: Cheng-Chia
+    prefer-names: Chloe
 repository-code: "https://github.com/chloeyqing/real-gas-correction"
 abstract: "A regime-aware symbolic regression model for approximating the CO2 compressibility correction over a documented thermodynamic domain."
