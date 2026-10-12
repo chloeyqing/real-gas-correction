@@ -33,11 +33,11 @@ def main() -> None:
     rows = []
     for split, filename in DATASETS.items():
         df = pd.read_csv(args.data_dir / filename)
-        required = {"T_K", "rho_molar_mol_per_m3", "p_real_Pa"}
+        required = {"T_K", "rho_mol_m3", "p_real_Pa"}
         if not required.issubset(df.columns):
             raise ValueError(f"{filename}: expected columns {sorted(required)}; got {list(df.columns)}")
         predictions = []
-        for t, rho in zip(df["T_K"], df["rho_molar_mol_per_m3"]):
+        for t, rho in zip(df["T_K"], df["rho_mol_m3"]):
             # CoolProp PR backend uses mass density (kg/m^3), not molar density.
             predictions.append(PropsSI("P", "T", float(t), "Dmass", float(rho) * molar_mass, "PR::CO2"))
         predicted = np.asarray(predictions)
