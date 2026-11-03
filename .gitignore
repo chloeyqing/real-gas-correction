@@ -220,3 +220,10 @@ __marimo__/
 # Project-generated artifacts
 data/processed/
 results/models/
+
+# Revision experiment artifacts that are regenerated locally.
+results/revision/peng_robinson_baseline
+results/revision/**/model.pkl
+results/revision/**/gate.pkl
+results/revision/**/search/
+results/revision/python_environment.txt

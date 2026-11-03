@@ -1,0 +1,16 @@
+{
+  "reference": "HEOS::CO2, CoolProp 8.0.0",
+  "baseline": "unfitted pure-fluid Peng-Robinson p(T, rho)",
+  "R": 8.31446261815324,
+  "Tc_K": 304.1282,
+  "pc_Pa": 7377300.0,
+  "omega": 0.22394,
+  "a_coefficient": 0.4572355289213822,
+  "b_coefficient": 0.07779607390388456,
+  "maximum_cpp_vs_coolprop_PR_difference_Pa": 7.450580596923828e-08,
+  "original_soft_gate_reproduced": true,
+  "test_rows": {
+    "natural_test": 1000,
+    "stress_test": 800
+  }
+}

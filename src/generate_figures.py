@@ -26,7 +26,7 @@ REGIME_LABELS = {
 }
 
 
-def plot_pressure_mape(repo_root: Path, output_dir: Path) -> None:
+def plot_pressure_mape(repo_root: Path, output_dir: Path, include_pr: bool = False) -> None:
     table = pd.read_csv(
         repo_root / "results" / "tables" / "final_test_comparison.csv"
     )
@@ -36,6 +36,10 @@ def plot_pressure_mape(repo_root: Path, output_dir: Path) -> None:
         if not (table["model"] == "ideal_gas").any():
             table = pd.concat([table, baseline], ignore_index=True)
 
+    if include_pr:
+        revision = pd.read_csv(repo_root / "results/revision/classical_baseline_comparison.csv")
+        table = pd.concat([table, revision[revision["model"] == "peng_robinson"]], ignore_index=True)
+
     table = table.drop_duplicates(
         subset=["model", "dataset"],
         keep="last",
@@ -44,6 +48,7 @@ def plot_pressure_mape(repo_root: Path, output_dir: Path) -> None:
     table = table[table["dataset"].isin(["natural_test", "stress_test"])]
     model_order = [
         "ideal_gas",
+        *(["peng_robinson"] if include_pr else []),
         "global_symbolic",
         "oracle_regime_specific",
         "hard_gate",
@@ -51,28 +56,41 @@ def plot_pressure_mape(repo_root: Path, output_dir: Path) -> None:
     ]
     model_labels = {
         "ideal_gas": "Ideal gas",
+        "peng_robinson": "Peng-Robinson",
         "global_symbolic": "Global symbolic",
         "oracle_regime_specific": "Oracle regime-specific",
         "hard_gate": "Hard gate",
         "final_soft_gate_model": "Final soft gate",
     }
+    if include_pr:
+        model_labels.update({"peng_robinson": "Peng-\nRobinson", "global_symbolic": "Global\nsymbolic",
+                             "oracle_regime_specific": "Oracle\nrouting", "final_soft_gate_model": "Final\nsoft gate"})
     pivot = table.pivot(index="model", columns="dataset", values="pressure_MAPE_percent")
     pivot = pivot.reindex(model_order).dropna(how="all")
 
     ax = pivot.rename(index=model_labels).plot.bar(
-        figsize=(11, 6),
+        figsize=(7.4, 4.062224) if include_pr else (11, 6),
         color={"natural_test": "#4C78A8", "stress_test": "#F58518"},
     )
-    ax.set_title("Held-out pressure MAPE comparison")
+    ax.set_title("Held-out pressure MAPE comparison", fontsize=13 if include_pr else None)
     ax.set_xlabel("")
     ax.set_ylabel("Pressure MAPE (%)")
+    if include_pr:
+        ax.set_yscale("log")
+        ax.set_ylim(0.1, 45)
+        ax.set_ylabel("Pressure MAPE (%) - logarithmic scale")
     ax.legend(["Natural test", "Stress test"], title="Dataset")
     ax.tick_params(axis="x", rotation=20)
+    if include_pr:
+        ax.tick_params(axis="x", rotation=0, labelsize=10)
+        ax.tick_params(axis="y", labelsize=9)
+        ax.legend(["Natural test", "Stress test"], title="Dataset", fontsize=9, title_fontsize=9)
     ax.grid(axis="y", alpha=0.25)
-    for container in ax.containers:
-        ax.bar_label(container, fmt="%.3f", padding=2, fontsize=8)
+    if not include_pr:
+        for container in ax.containers:
+            ax.bar_label(container, fmt="%.3f", padding=2, fontsize=8)
     plt.tight_layout()
-    plt.savefig(output_dir / "model_pressure_mape_comparison.png", dpi=220)
+    ax.figure.savefig(output_dir / "model_pressure_mape_comparison.png", dpi=220)
     plt.close()
 
 
@@ -113,7 +131,7 @@ def plot_regime_distribution(repo_root: Path, output_dir: Path) -> None:
     ax.legend(frameon=True)
     ax.grid(alpha=0.25)
     plt.tight_layout()
-    plt.savefig(output_dir / "regime_distribution_map.png", dpi=220)
+    fig.savefig(output_dir / "regime_distribution_map.png", dpi=220)
     plt.close()
 
 
@@ -149,7 +167,7 @@ def plot_prediction_vs_reference(repo_root: Path, output_dir: Path) -> None:
     colorbar = fig.colorbar(ax.collections[0], ax=ax)
     colorbar.set_label("Absolute pressure error (%)")
     plt.tight_layout()
-    plt.savefig(output_dir / "prediction_vs_coolprop.png", dpi=220)
+    fig.savefig(output_dir / "prediction_vs_coolprop.png", dpi=220)
     plt.close()
 
 
@@ -160,10 +178,14 @@ def main() -> None:
         type=Path,
         default=Path(__file__).resolve().parents[1],
     )
+    parser.add_argument("--include-pr", action="store_true",
+                        help="Add the revision PR baseline and use a log MAPE scale")
+    parser.add_argument("--output-dir", type=Path,
+                        help="Optional figure destination (default: results/figures)")
     args = parser.parse_args()
-    output_dir = args.repo_root / "results" / "figures"
+    output_dir = args.output_dir or args.repo_root / "results" / "figures"
     output_dir.mkdir(parents=True, exist_ok=True)
-    plot_pressure_mape(args.repo_root, output_dir)
+    plot_pressure_mape(args.repo_root, output_dir, include_pr=args.include_pr)
     plot_regime_distribution(args.repo_root, output_dir)
     plot_prediction_vs_reference(args.repo_root, output_dir)
     print(f"Saved figures to {output_dir}")
