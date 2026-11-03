@@ -1,0 +1,38 @@
+{
+  "base_commit": "fe96181c44626792f47c33c9f7313dfc8316d451",
+  "planned_master_seeds": [
+    52,
+    62,
+    72
+  ],
+  "original_seeds": {
+    "global": 42,
+    "near_ideal": 43,
+    "attraction_standard": 44,
+    "excluded_volume_dominated": 45,
+    "attraction_expanded": 46,
+    "gate": 47
+  },
+  "seed_policy": "predeclared master seeds; offsets 0..5 match original search roles; no seed selected using test errors",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "versions": {
+    "CoolProp": "8.0.0",
+    "pysr": "2.2.1",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0"
+  },
+  "sha256": {
+    "configs/experiment_config.json": "79141260559d35b5907c6f776e31882da6ccb86fec573cbfeb4725f999ac7b84",
+    "configs/split_manifest.json": "b709060e5e277d404b5f58469369b9d0821a1a56ed189d3b828df03948608d16",
+    "src/train_pysr.py": "1eabd776e5d2e378c145bc363f68b1206b2356073d9587f98e97df8c8fa75ed8",
+    "src/revision_experiments.py": "1fcf5ede490f8845a84e54b733cde77f04d2e4b5657739cabc6a99aff9f3e866",
+    "src/peng_robinson_baseline.cpp": "f9d8d383414d4a3488f42426b065b0e725943e0540ca681f2e0766c36d06776c",
+    "data/processed/co2_train.csv": "f7f5d843c197ecff145b229bb408e4e1b295388ac1a82b8e43a1a5ea8d754a19",
+    "data/processed/co2_validation.csv": "eeceec1ff50588aada552efc50957ca279e22a1ee576b0221ce33fcc5b050f87",
+    "data/processed/co2_stress_validation.csv": "e8795fac663c470d8fbe4ac7f6d8a57b127da83ce716edc16c5c1f8910754a30",
+    "data/processed/co2_test.csv": "ac0f551d3639303b23673a8dd7ca00fd2b56b24128f642e995d14d37f0c92367",
+    "data/processed/co2_stress_test.csv": "e3fac241fa8ff3b97fea0d223e97348d9b4baac8a243ad36c3fcfa4dacf44873"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "julia_version": "1.13.3",
+  "julia_packages": {
+    "DynamicExpressions": "2.10.1",
+    "PythonCall": "0.9.35",
+    "SymbolicRegression": "2.2.1"
+  }
+}

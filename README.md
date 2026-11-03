@@ -167,6 +167,20 @@ src/
   equation stability across multiple PySR seeds.
 - The symbolic experts and gate are intended for the documented domain only.
 
+## IMAT 2026 revision checks
+
+The revision adds a direct C++ Peng-Robinson pressure baseline and three full
+symbolic-training repeats with predeclared master seeds 52, 62, and 72.
+The original equations and tracked evaluation tables remain available.
+See [the revision protocol](docs/IMAT_revision.md) for commands, software versions,
+selection rules, and the interpretation of optimizer variability.
+
+New metrics and per-state baseline predictions are in
+[`results/revision/`](results/revision/). The repeated-seed summary reports the
+three additional runs separately from the original reported model.
+
+![Revision pressure MAPE comparison, logarithmic scale](results/revision/figures/model_pressure_mape_comparison.png)
+
 ## Figures
 
 ### Pressure MAPE comparison

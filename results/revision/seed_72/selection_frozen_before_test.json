@@ -1,0 +1,48 @@
+{
+  "master_seed": 72,
+  "symbolic_seeds": {
+    "global": 72,
+    "near_ideal": 73,
+    "attraction_standard": 74,
+    "excluded_volume_dominated": 75,
+    "attraction_dominated": 76
+  },
+  "gate_seed": 77,
+  "selected_depth": 10,
+  "selection_data": [
+    "natural_validation",
+    "stress_validation"
+  ],
+  "symbolic_selections": {
+    "global": {
+      "index": 7,
+      "equation": "(rho_r - 1*(-0.020092085))*(rho_r*rho_r*0.16840447 - 1*(-0.82203305) - 1.7281493/T_r)",
+      "seed": 72,
+      "fit_seconds": 57.052339947999826
+    },
+    "near_ideal": {
+      "index": 5,
+      "equation": "rho_r*(-1.6844524 + (3.9331114 - rho_r)/T_r)*(-0.5364934)",
+      "seed": 73,
+      "fit_seconds": 127.6035367259999
+    },
+    "attraction_standard": {
+      "index": 7,
+      "equation": "rho_r*(rho_r*(rho_r*0.113037325 + 0.14161327) + 0.7498236 - 1.7501968/T_r)",
+      "seed": 74,
+      "fit_seconds": 31.259245740000097
+    },
+    "excluded_volume_dominated": {
+      "index": 7,
+      "equation": "rho_r*(T_r*(rho_r*0.046932846*rho_r*rho_r + 0.5382919) - 1.0009598)",
+      "seed": 75,
+      "fit_seconds": 26.913604826999972
+    },
+    "attraction_dominated": {
+      "index": 15,
+      "equation": "(rho_r + 1.3084303 + (0.0545050097230864*(T_r**2 + rho_r)**2*(rho_r - 1*1.3424176)**2 - 1*4.0749893)/T_r)*rho_r*0.4223246",
+      "seed": 76,
+      "fit_seconds": 64.33758997899986
+    }
+  }
+}
